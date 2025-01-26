@@ -136,7 +136,7 @@ type ProductNode = {
 // -- Page Component --
 export default async function ProductPage({
   params,
-  searchParams,
+  // searchParams,
 }: {
   params: { handle: string };
   searchParams?: { [key: string]: string | string[] | undefined };
