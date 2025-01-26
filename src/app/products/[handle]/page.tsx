@@ -76,8 +76,71 @@ const GET_PRODUCT_BY_HANDLE = `
   }
 `;
 
+// -- Types --
+type VariantNode = {
+  id: string;
+  title: string;
+  priceV2?: {
+    amount?: string;
+    currencyCode?: string;
+  };
+  image?: {
+    url: string;
+    altText?: string;
+  };
+};
+
+type ProductNode = {
+  id: string;
+  title: string;
+  description: string;
+  handle: string;
+  images?: {
+    edges: { node: { url: string; altText?: string } }[];
+  };
+  variants?: {
+    edges: { node: VariantNode }[];
+  };
+  priceRange?: {
+    minVariantPrice?: {
+      amount?: string;
+      currencyCode?: string;
+    };
+  };
+  relatedProducts?: {
+    edges: {
+      node: {
+        products: {
+          edges: {
+            node: {
+              id: string;
+              title: string;
+              handle: string;
+              images: {
+                edges: { node: { url: string; altText?: string } }[];
+              };
+              priceRange: {
+                minVariantPrice: {
+                  amount: string;
+                  currencyCode: string;
+                };
+              };
+            };
+          }[];
+        };
+      };
+    }[];
+  };
+};
+
 // -- Page Component --
-export default async function ProductPage({ params }: { params: { handle: string } }) {
+export default async function ProductPage({
+  params,
+  searchParams,
+}: {
+  params: { handle: string };
+  searchParams?: { [key: string]: string | string[] | undefined };
+}) {
   const { handle } = params;
 
   // Fetch product data
@@ -86,7 +149,7 @@ export default async function ProductPage({ params }: { params: { handle: string
     variables: { handle },
   });
 
-  const product = productData?.productByHandle;
+  const product: ProductNode = productData?.productByHandle;
 
   // If product not found, render 404
   if (!product) {
@@ -103,7 +166,5 @@ export default async function ProductPage({ params }: { params: { handle: string
     altText: node.images?.edges[0]?.node.altText || node.title,
   })) || [];
 
-  return (
-    <ProductPageContent product={product} relatedProducts={related} />
-  );
+  return <ProductPageContent product={product} relatedProducts={related} />;
 }
