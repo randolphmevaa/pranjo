@@ -12,6 +12,8 @@
     "@motionone/utils": "^10.18.0",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/line-clamp": "^0.4.4",
+    "@vercel/analytics": "^1.4.1",
+    "@vercel/speed-insights": "^1.1.0",
     "embla-carousel-react": "^8.5.2",
     "focus-trap-react": "^11.0.3",
     "framer-motion": "^12.0.5",
