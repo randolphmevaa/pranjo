@@ -136,11 +136,11 @@ type ProductNode = {
 // -- Props Interface --
 interface ProductPageProps {
   params: { handle: string };
-  // Removed searchParams
+  searchParams?: { [key: string]: string | string[] };
 }
 
 // -- Page Component --
-export default async function ProductPage({ params }: ProductPageProps) {
+export default async function ProductPage({ params, searchParams }: ProductPageProps) {
   const { handle } = params;
 
   // Fetch product data
