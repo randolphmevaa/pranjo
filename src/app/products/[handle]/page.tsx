@@ -67,8 +67,8 @@ const GET_PRODUCT_BY_HANDLE = `
                     }
                   }
                 }
-              }
-            }
+              }[]
+            };
           }
         }
       }
@@ -133,14 +133,14 @@ type ProductNode = {
   };
 };
 
-// -- Page Component --
-export default async function ProductPage({
-  params,
-  // searchParams,
-}: {
+// -- Props Interface --
+interface ProductPageProps {
   params: { handle: string };
-  searchParams?: { [key: string]: string | string[] | undefined };
-}) {
+  searchParams?: { [key: string]: string | string[] };
+}
+
+// -- Page Component --
+export default async function ProductPage({ params, searchParams }: ProductPageProps) {
   const { handle } = params;
 
   // Fetch product data
