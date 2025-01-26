@@ -105,10 +105,10 @@ export default function AboutUs() {
             </div>
             <div className="md:w-1/2 md:pl-10 mt-8 md:mt-0">
               <p className="text-gray-700 mb-4">
-                From day one, our mission has been to blend functionality with style, ensuring that every product supports your practice while reflecting your personal aesthetic. We've collaborated with designers and artisans who share our vision, resulting in a collection that's both beautiful and durable.
+                From day one, our mission has been to blend functionality with style, ensuring that every product supports your practice while reflecting your personal aesthetic. We&apos;ve collaborated with designers and artisans who share our vision, resulting in a collection that&apos;s both beautiful and durable.
               </p>
               <p className="text-gray-700">
-                As we continue to grow, we remain committed to sustainability and ethical manufacturing practices. We believe that true well-being extends beyond the mat, and we're dedicated to making a positive impact on our community and the environment.
+                As we continue to grow, we remain committed to sustainability and ethical manufacturing practices. We believe that true well-being extends beyond the mat, and we&apos;re dedicated to making a positive impact on our community and the environment.
               </p>
             </div>
           </motion.div>

@@ -2,7 +2,7 @@
 'use client';
 
 import { useCart } from '@/context/CartContext';
-import { useRouter } from 'next/navigation';
+// import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { HiArrowRight } from 'react-icons/hi';
 // import Link from 'next/link';

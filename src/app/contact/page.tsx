@@ -78,7 +78,7 @@ export default function ContactUs() {
         <title>Contact Us | Pranjo Yoga</title>
         <meta
           name="description"
-          content="Get in touch with Pranjo Yoga for inquiries, support, and feedback. We're here to help you elevate your yoga practice."
+          content="Get in touch with Pranjo Yoga for inquiries, support, and feedback. We&apos;re here to help you elevate your yoga practice."
         />
         {/* Add more meta tags as needed */}
       </Head>
@@ -121,7 +121,7 @@ export default function ContactUs() {
                 Contact Information
               </h2>
               <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
-                We'd love to hear from you! Whether you have a question about our
+                We&apos;d love to hear from you! Whether you have a question about our
                 products, need assistance with your order, or just want to share
                 your experience, feel free to reach out.
               </p>
@@ -207,7 +207,7 @@ export default function ContactUs() {
                 Send Us a Message
               </h2>
               <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
-                Have a question or feedback? Fill out the form below and we'll
+                Have a question or feedback? Fill out the form below and we&apos;ll
                 get back to you as soon as possible.
               </p>
             </motion.div>

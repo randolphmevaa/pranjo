@@ -10,7 +10,7 @@ export default function EmptyCart() {
     <div className="flex flex-col items-center justify-center py-20">
       <HiShoppingCart className="w-16 h-16 text-gray-400 mb-4" />
       <h2 className="text-2xl font-semibold mb-2">Your cart is empty</h2>
-      <p className="text-gray-600 mb-6">Looks like you haven't added anything to your cart yet.</p>
+      <p className="text-gray-600 mb-6">Looks like you haven&apos;t added anything to your cart yet.</p>
       <Link href="/">
         <motion.a
           whileHover={{ scale: 1.05 }}

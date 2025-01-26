@@ -59,7 +59,7 @@ export default function PhilosophySection() {
             transition={{ duration: 1, delay: 1 }}
             viewport={{ once: true }}
           >
-            We're born from the desire for less but better performance-wear. Products precision engineered to perform - day after day. Every product is developed with an understated style and quality that lasts.
+            We&apos;re born from the desire for less but better performance-wear. Products precision engineered to perform - day after day. Every product is developed with an understated style and quality that lasts.
           </motion.p>
           <motion.p
             className="text-gray-700 text-base sm:text-lg mb-6 leading-relaxed font-body"
@@ -68,7 +68,7 @@ export default function PhilosophySection() {
             transition={{ duration: 1, delay: 1.2 }}
             viewport={{ once: true }}
           >
-            We don't do seasonal trends or motivational messages that tell you 'you can do it'. We're straight up, tell it like it is - No bullshit. Like the fact we're far from the cheapest, but we might just be the best.
+            We don&apos;t do seasonal trends or motivational messages that tell you &apos;you can do it&apos;. We&apos;re straight up, tell it like it is - No bullshit. Like the fact we&apos;re far from the cheapest, but we might just be the best.
           </motion.p>
 
           {/* Call-to-Action Button with Hover Animation */}

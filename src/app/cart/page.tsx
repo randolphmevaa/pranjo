@@ -9,6 +9,7 @@ import EmptyCart from '@/app/components/EmptyCart';
 import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 const CartPage = () => {
   const { items } = useCart();
@@ -46,7 +47,7 @@ const CartPage = () => {
 
         {/* Continue Shopping Button */}
         <div className="mt-8 text-center">
-          <a href="/">
+          <Link href="/">
             <motion.a
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -54,7 +55,7 @@ const CartPage = () => {
             >
               Continue Shopping
             </motion.a>
-          </a>
+          </Link>
         </div>
       </section>
 
