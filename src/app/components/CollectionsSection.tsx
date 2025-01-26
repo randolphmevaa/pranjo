@@ -27,8 +27,8 @@ export default function CollectionsSection({
   // **Unconditionally call Hooks before any conditional logic**
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
-    speed: 8, // Adjusted speed for smoother transition
-    draggable: true,
+    // speed: 8, // Adjusted speed for smoother transition
+    // draggable: true,
     axis: 'x',
     align: 'start',
     skipSnaps: false,

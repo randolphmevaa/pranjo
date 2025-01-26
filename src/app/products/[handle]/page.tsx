@@ -1,13 +1,7 @@
 // src/app/products/[handle]/page.tsx
 
 import { notFound } from 'next/navigation';
-import { shopifyFetch } from '../../../lib/shopify';
-// import Header from "@/app/components/Header";
-// import Footer from '@/app/components/Footer';
-// import VariantSelector from '@/app/components/VariantSelector';
-// import AddToCartButton from '@/app/components/AddToCartButton';
-// import RelatedProducts from '@/app/components/RelatedProducts'; // Client Component
-// import ImageModal from '@/app/components/ImageModal'; // Client Component
+import { shopifyFetch } from '@/lib/shopify';
 import React from 'react';
 import ProductPageContent from './ProductPageContent'; // Client Component
 
@@ -140,16 +134,26 @@ type ProductNode = {
 };
 
 // -- Page Component --
-export default async function ProductPage({ params }: { params: { handle: string } }) {
-  const { handle } = params;
+interface ProductPageProps {
+  params: Promise<{
+    handle: string;
+  }>;
+  searchParams?: Promise<{
+    [key: string]: string | string[] | undefined;
+  }>;
+}
 
-  // Fetch product data
-  const productData = await shopifyFetch({
+export default async function ProductPage({ params }: ProductPageProps) {
+  const resolvedParams = await params;
+  const { handle } = resolvedParams;
+
+  // Fetch product data with type safety
+  const productData = await shopifyFetch<{ productByHandle: ProductNode }>({
     query: GET_PRODUCT_BY_HANDLE,
     variables: { handle },
   });
 
-  const product: ProductNode = productData?.productByHandle;
+  const product: ProductNode | null = productData.productByHandle;
 
   // If product not found, render 404
   if (!product) {
@@ -157,16 +161,14 @@ export default async function ProductPage({ params }: { params: { handle: string
   }
 
   // Extract related products if available
-  const related = product.relatedProducts?.[0]?.node.products.edges.map(({ node }) => ({
+  const related = product.relatedProducts?.edges?.[0]?.node.products.edges.map(({ node }) => ({
     id: node.id,
     title: node.title,
     handle: node.handle,
     price: `${node.priceRange.minVariantPrice.amount} ${node.priceRange.minVariantPrice.currencyCode}`,
-    imageUrl: node.images?.edges[0]?.node.url || '',
-    altText: node.images?.edges[0]?.node.altText || node.title,
+    imageUrl: node.images?.edges?.[0]?.node.url || '',
+    altText: node.images?.edges?.[0]?.node.altText || node.title,
   })) || [];
 
-  return (
-    <ProductPageContent product={product} relatedProducts={related} />
-  );
+  return <ProductPageContent product={product} relatedProducts={related} />;
 }

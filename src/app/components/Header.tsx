@@ -52,7 +52,7 @@ const countries = [
 ];
 
 export default function Header({
-  featuredProducts,
+  featuredProducts = [],
 }: {
   featuredProducts: { node: ProductNode }[];
 }) {

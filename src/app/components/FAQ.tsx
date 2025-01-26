@@ -1,6 +1,8 @@
 // src/app/components/FAQ.tsx
 'use client';
 
+import React, { useState } from 'react'; // Import useState from React
+
 type FAQItem = {
   question: string;
   answer: string;

@@ -3,14 +3,20 @@
 const domain = process.env.SHOPIFY_STORE_DOMAIN;
 const accessToken = process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN;
 
-// GraphQL request wrapper
-export async function shopifyFetch({
+// Define the shape of the Shopify response
+interface ShopifyResponse<T> {
+  data: T;
+  errors?: Array<{ message: string }>;
+}
+
+// GraphQL request wrapper with generics
+export async function shopifyFetch<T>({
   query,
   variables = {},
 }: {
   query: string;
   variables?: Record<string, unknown>;
-}) {
+}): Promise<T> {
   if (!domain || !accessToken) {
     throw new Error('Missing Shopify domain or access token in environment variables.');
   }
@@ -29,13 +35,14 @@ export async function shopifyFetch({
       next: { revalidate: 60 },
     });
 
-    const { data, errors } = await res.json();
-    if (errors) {
-      console.error(errors);
+    const json: ShopifyResponse<T> = await res.json();
+
+    if (json.errors) {
+      console.error(json.errors);
       throw new Error('Failed to fetch Shopify data');
     }
 
-    return data;
+    return json.data;
   } catch (error) {
     console.error(error);
     throw new Error('Shopify fetch failed');

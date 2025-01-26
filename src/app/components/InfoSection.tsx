@@ -12,7 +12,7 @@ import {
 
 type InfoItem = {
   id: number;
-  icon: JSX.Element;
+  icon: React.ReactElement;
   title: string;
   description: string;
 };

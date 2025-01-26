@@ -84,15 +84,53 @@ type CollectionNode = {
   };
 };
 
+type ProductNode = {
+  id: string;
+  title: string;
+  handle: string;
+  featuredImage?: {
+    url: string;
+    altText?: string;
+  };
+  priceRange?: {
+    minVariantPrice?: {
+      amount?: string;
+      currencyCode?: string;
+    };
+  };
+};
+
+type ProductEdge = {
+  node: ProductNode;
+};
+
+type CollectionEdge = {
+  node: CollectionNode;
+};
+
+type ShopifyError = {
+  message: string;
+  locations?: { line: number; column: number }[];
+  path?: string[];
+};
+
+type ShopifyResponse<T> = {
+  data?: T;
+  errors?: ShopifyError[];
+};
+
+
 // -- PAGE COMPONENT -------------------------------------------
 export default async function Home() {
   // Fetch products
-  const productData = await shopifyFetch({ query: GET_PRODUCTS_QUERY });
-  const products = productData?.products?.edges || [];
+  const productData: ShopifyResponse<{ products: { edges: ProductEdge[] } }> =
+  await shopifyFetch({ query: GET_PRODUCTS_QUERY });
+  const products = productData.data?.products?.edges || [];
 
   // Fetch collections
-  const collectionData = await shopifyFetch({ query: GET_COLLECTIONS_QUERY });
-  const collections = collectionData?.collections?.edges || [];
+  const collectionData: ShopifyResponse<{ collections: { edges: CollectionEdge[] } }> =
+  await shopifyFetch({ query: GET_COLLECTIONS_QUERY });
+  const collections = collectionData.data?.collections?.edges || [];
 
   // "Featured" slice: indexes [1..6]
   const featuredProducts = products.slice(1, 7); // Products 2-7
@@ -100,7 +138,7 @@ export default async function Home() {
   return (
     <main className="min-h-screen bg-white text-gray-900 font-sans">
       <AnnouncementBanner />
-      <Header />
+      <Header featuredProducts={featuredProducts} />
       <Hero />
       <FeatureCarousel featuredProducts={featuredProducts} />
       <CollectionsSection collections={collections} />

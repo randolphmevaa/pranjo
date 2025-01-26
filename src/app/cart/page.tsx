@@ -12,12 +12,67 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 
 const CartPage = () => {
+  // Mock `featuredProducts` data
+  const featuredProducts = [
+    {
+      node: {
+        id: "1",
+        title: "Yoga Mat",
+        handle: "yoga-mat",
+        featuredImage: {
+          url: "/images/yoga-mat.jpg",
+          altText: "A high-quality yoga mat",
+        },
+        priceRange: {
+          minVariantPrice: {
+            amount: "29.99",
+            currencyCode: "USD",
+          },
+        },
+      },
+    },
+    {
+      node: {
+        id: "2",
+        title: "Yoga Blocks",
+        handle: "yoga-blocks",
+        featuredImage: {
+          url: "/images/yoga-blocks.jpg",
+          altText: "A set of yoga blocks",
+        },
+        priceRange: {
+          minVariantPrice: {
+            amount: "19.99",
+            currencyCode: "USD",
+          },
+        },
+      },
+    },
+    {
+      node: {
+        id: "3",
+        title: "Yoga Straps",
+        handle: "yoga-straps",
+        featuredImage: {
+          url: "/images/yoga-straps.jpg",
+          altText: "Durable yoga straps",
+        },
+        priceRange: {
+          minVariantPrice: {
+            amount: "14.99",
+            currencyCode: "USD",
+          },
+        },
+      },
+    },
+  ];
+
   const { items } = useCart();
 
   if (items.length === 0) {
     return (
       <main className="min-h-screen bg-white text-gray-900 font-body">
-        <Header />
+        <Header featuredProducts={featuredProducts} />
         <EmptyCart />
         <Footer />
       </main>
@@ -26,7 +81,7 @@ const CartPage = () => {
 
   return (
     <main className="min-h-screen bg-white text-gray-900 font-body">
-      <Header />
+      <Header featuredProducts={featuredProducts} />
 
       <section className="py-16 px-6 sm:px-8 max-w-7xl mx-auto">
         <h1 className="text-3xl font-bold mb-8">Your Shopping Cart</h1>

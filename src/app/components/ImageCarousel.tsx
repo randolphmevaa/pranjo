@@ -9,6 +9,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
 import 'swiper/css/zoom';
+import styles from './ImageCarousel.module.css';
 
 import SwiperCore from 'swiper';
 
@@ -30,20 +31,21 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
   return (
     <div className="w-full">
       {/* Main Swiper */}
-      <Swiper
-        style={{ '--swiper-navigation-color': '#000', '--swiper-pagination-color': '#000' }}
-        spaceBetween={10}
-        navigation
-        thumbs={{ swiper: thumbsSwiper }}
-        zoom={true}
-        a11y={{
-          enabled: true,
-          prevSlideMessage: 'Previous slide',
-          nextSlideMessage: 'Next slide',
-          slideLabelMessage: '{{index}} / {{slidesLength}}',
-        }}
-        className="w-full h-full"
-      >
+
+        <Swiper
+          className={`w-full h-full ${styles['swiper-style']}`}
+          spaceBetween={10}
+          navigation
+          thumbs={{ swiper: thumbsSwiper }}
+          zoom={true}
+          a11y={{
+            enabled: true,
+            prevSlideMessage: 'Previous slide',
+            nextSlideMessage: 'Next slide',
+            slideLabelMessage: '{{index}} / {{slidesLength}}',
+          }}
+        >
+
         {images.map((image, index) => (
           <SwiperSlide key={index}>
             <div className="swiper-zoom-container relative w-full h-96">

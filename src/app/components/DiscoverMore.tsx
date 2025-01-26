@@ -57,7 +57,7 @@ export default function DiscoverMore({
     loop: true,
     skipSnaps: false,
     slidesToScroll: 1,
-    speed: 8, // Adjusted speed for smoother transition
+    // speed: 8, // Adjusted speed for smoother transition
   });
 
   const scrollPrev = useCallback(() => {

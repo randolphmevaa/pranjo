@@ -4,9 +4,65 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 
 export default function ShippingPolicy() {
+
+  // Mock `featuredProducts` data
+  const featuredProducts = [
+    {
+      node: {
+        id: "1",
+        title: "Yoga Mat",
+        handle: "yoga-mat",
+        featuredImage: {
+          url: "/images/yoga-mat.jpg",
+          altText: "A high-quality yoga mat",
+        },
+        priceRange: {
+          minVariantPrice: {
+            amount: "29.99",
+            currencyCode: "USD",
+          },
+        },
+      },
+    },
+    {
+      node: {
+        id: "2",
+        title: "Yoga Blocks",
+        handle: "yoga-blocks",
+        featuredImage: {
+          url: "/images/yoga-blocks.jpg",
+          altText: "A set of yoga blocks",
+        },
+        priceRange: {
+          minVariantPrice: {
+            amount: "19.99",
+            currencyCode: "USD",
+          },
+        },
+      },
+    },
+    {
+      node: {
+        id: "3",
+        title: "Yoga Straps",
+        handle: "yoga-straps",
+        featuredImage: {
+          url: "/images/yoga-straps.jpg",
+          altText: "Durable yoga straps",
+        },
+        priceRange: {
+          minVariantPrice: {
+            amount: "14.99",
+            currencyCode: "USD",
+          },
+        },
+      },
+    },
+  ];
+
   return (
     <>
-      <Header />
+      <Header featuredProducts={featuredProducts} />
       <main className="max-w-6xl mx-auto px-6 sm:px-10 py-16 bg-[#E5E6E1] text-gray-900">
         <div className="text-center mb-12">
           <h1 className="text-5xl font-header font-bold text-[#6B8F3D] mb-4">Shipping Policy</h1>

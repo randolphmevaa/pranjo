@@ -54,8 +54,8 @@ export default function FeatureCarousel({
   // Initialize Embla Carousel with loop enabled and smoother transitions
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
-    speed: 8, // Adjusted speed for smoother transition
-    draggable: true,
+    // speed: 8, // Adjusted speed for smoother transition
+    // draggable: true,
     axis: "x",
     align: "start",
     skipSnaps: false,

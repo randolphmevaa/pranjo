@@ -72,9 +72,65 @@ const ProductPageContent: React.FC<ProductPageContentProps> = ({ product, relate
     setCurrentAlt('');
   };
 
+  // Mock `featuredProducts` data
+  const featuredProducts = [
+    {
+      node: {
+        id: "1",
+        title: "Yoga Mat",
+        handle: "yoga-mat",
+        featuredImage: {
+          url: "/images/yoga-mat.jpg",
+          altText: "A high-quality yoga mat",
+        },
+        priceRange: {
+          minVariantPrice: {
+            amount: "29.99",
+            currencyCode: "USD",
+          },
+        },
+      },
+    },
+    {
+      node: {
+        id: "2",
+        title: "Yoga Blocks",
+        handle: "yoga-blocks",
+        featuredImage: {
+          url: "/images/yoga-blocks.jpg",
+          altText: "A set of yoga blocks",
+        },
+        priceRange: {
+          minVariantPrice: {
+            amount: "19.99",
+            currencyCode: "USD",
+          },
+        },
+      },
+    },
+    {
+      node: {
+        id: "3",
+        title: "Yoga Straps",
+        handle: "yoga-straps",
+        featuredImage: {
+          url: "/images/yoga-straps.jpg",
+          altText: "Durable yoga straps",
+        },
+        priceRange: {
+          minVariantPrice: {
+            amount: "14.99",
+            currencyCode: "USD",
+          },
+        },
+      },
+    },
+  ];
+
+
   return (
     <main className="min-h-screen bg-brandGray text-gray-900 font-body">
-      <Header />
+      <Header featuredProducts={featuredProducts} />
 
       {/* Product Details */}
       <section className="py-16 px-6 sm:px-8 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
@@ -84,17 +140,20 @@ const ProductPageContent: React.FC<ProductPageContentProps> = ({ product, relate
           {product.images && product.images.edges.length > 0 && (
             <div
               className="relative w-full h-96 rounded-lg overflow-hidden shadow-lg cursor-pointer"
-              onClick={() => openModal(product.images.edges[0].node.url, product.images.edges[0].node.altText || product.title)}
+              onClick={() => openModal(
+                product.images?.edges[0]?.node.url || '', // Default to an empty string if undefined
+                product.images?.edges[0]?.node.altText || product.title // Default to product.title if altText is undefined
+              )}
             >
               <Image
-                src={product.images.edges[0].node.url}
-                alt={product.images.edges[0].node.altText || product.title}
+                src={product.images?.edges[0]?.node.url || ''} // Ensure src is a string
+                alt={product.images?.edges[0]?.node.altText || product.title} // Ensure alt is a string
                 fill
                 className="object-cover hover:scale-105 transition-transform duration-300"
                 priority
                 sizes="(max-width: 768px) 100vw,
-                       (max-width: 1200px) 50vw,
-                       50vw"
+                      (max-width: 1200px) 50vw,
+                      50vw"
               />
             </div>
           )}
