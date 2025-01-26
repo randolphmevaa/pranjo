@@ -136,12 +136,11 @@ type ProductNode = {
 // -- Props Interface --
 interface ProductPageProps {
   params: { handle: string };
-  // Remove searchParams if not needed
-  // searchParams?: { [key: string]: string | string[] };
+  searchParams?: { [key: string]: string | string[] }; // Reintroduced as optional
 }
 
 // -- Page Component --
-export default async function ProductPage({ params }: ProductPageProps) {
+export default async function ProductPage({ params, searchParams: _searchParams }: ProductPageProps) {
   const { handle } = params;
 
   // Fetch product data
@@ -169,4 +168,3 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
   return <ProductPageContent product={product} relatedProducts={related} />;
 }
-
