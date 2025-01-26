@@ -57,33 +57,7 @@ const GET_COLLECTIONS_QUERY = `
 `;
 
 // -- TYPES -----------------------------------------------------
-// type ProductNode = {
-//   id: string;
-//   title: string;
-//   handle: string;
-//   description: string;
-//   featuredImage?: {
-//     url: string;
-//     altText?: string;
-//   };
-//   priceRange?: {
-//     minVariantPrice?: {
-//       amount?: string;
-//       currencyCode?: string;
-//     };
-//   };
-// };
-
-type CollectionNode = {
-  id: string;
-  title: string;
-  handle: string;
-  image?: {
-    url: string;
-    altText?: string;
-  };
-};
-
+// Define the structure of the product data returned by the Shopify API
 type ProductNode = {
   id: string;
   title: string;
@@ -100,37 +74,40 @@ type ProductNode = {
   };
 };
 
-type ProductEdge = {
-  node: ProductNode;
+// Define the structure of the collection data returned by the Shopify API
+type CollectionNode = {
+  id: string;
+  title: string;
+  handle: string;
+  image?: {
+    url: string;
+    altText?: string;
+  };
 };
 
-type CollectionEdge = {
-  node: CollectionNode;
+// Define the structure of the entire product data response
+type ProductsResponse = {
+  products: {
+    edges: { node: ProductNode }[];
+  };
 };
 
-type ShopifyError = {
-  message: string;
-  locations?: { line: number; column: number }[];
-  path?: string[];
+// Define the structure of the entire collection data response
+type CollectionsResponse = {
+  collections: {
+    edges: { node: CollectionNode }[];
+  };
 };
-
-type ShopifyResponse<T> = {
-  data?: T;
-  errors?: ShopifyError[];
-};
-
 
 // -- PAGE COMPONENT -------------------------------------------
 export default async function Home() {
   // Fetch products
-  const productData: ShopifyResponse<{ products: { edges: ProductEdge[] } }> =
-  await shopifyFetch({ query: GET_PRODUCTS_QUERY });
-  const products = productData.data?.products?.edges || [];
+  const productData: ProductsResponse = await shopifyFetch({ query: GET_PRODUCTS_QUERY });
+  const products = productData?.products?.edges || [];
 
   // Fetch collections
-  const collectionData: ShopifyResponse<{ collections: { edges: CollectionEdge[] } }> =
-  await shopifyFetch({ query: GET_COLLECTIONS_QUERY });
-  const collections = collectionData.data?.collections?.edges || [];
+  const collectionData: CollectionsResponse = await shopifyFetch({ query: GET_COLLECTIONS_QUERY });
+  const collections = collectionData?.collections?.edges || [];
 
   // "Featured" slice: indexes [1..6]
   const featuredProducts = products.slice(1, 7); // Products 2-7
@@ -161,6 +138,7 @@ export default async function Home() {
     </main>
   );
 }
+
 
 // -- COLLECTIONS -----------------------------------------------
 function CollectionsSection({
