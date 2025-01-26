@@ -1,0 +1,82 @@
+/* styles/globals.css */
+
+/* Import the Announcement Bar styles */
+.announcement-bar {
+  --announcement-bar-gutter: 0.625rem;
+  --announcement-bar-font-size: 0.875rem;
+  text-align: center;
+  font-size: var(--announcement-bar-font-size);
+  background-color: #E1FEA2; /* Light green background */
+  color: rgba(0, 0, 0, 0.7); /* Slightly lighter text */
+  overflow: hidden; /* Hide overflow outside the marquee */
+  padding: 1em 0; /* Vertical padding for spacing */
+  border-bottom: 1px solid rgb(0, 0, 0); /* Slightly thicker border */
+  
+  /* Apply the Body Font */
+  font-family: 'BodyFont', sans-serif;
+}
+
+/* Carousel container */
+.announcement-bar__carousel {
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Marquee content */
+.announcement-bar__marquee {
+  display: flex;
+  gap: 1rem; /* Space between items */
+  animation: marquee 30s linear infinite; /* Slowed down animation */
+  white-space: nowrap; /* Prevent text wrapping */
+  
+  /* Apply the Body Font */
+  font-family: 'BodyFont', sans-serif;
+}
+
+.announcement-bar__marquee:hover {
+  animation-play-state: paused; /* Pause marquee on hover */
+}
+
+/* Individual items in the marquee */
+.announcement-bar__marquee span {
+  font-size: var(--announcement-bar-font-size);
+  font-weight: 400; /* Adjusted to match imported font weights */
+  text-transform: none;
+  letter-spacing: 0.05em;
+  display: inline-block;
+  color: rgb(0, 0, 0); /* Slightly lighter text color */
+  
+  /* Apply the Body Font */
+  font-family: 'BodyFont', sans-serif;
+}
+
+/* Specific style for "WORLDWIDE SHIPPING" to ensure all caps */
+.announcement-bar__marquee span:first-child {
+  text-transform: uppercase;
+  
+  /* Apply the Header Font for emphasis */
+  font-family: 'HeaderFont', sans-serif;
+}
+
+/* Separator style */
+.separator {
+  margin: 0 0.5rem;
+  font-size: 1rem; /* Slightly larger separator */
+  color: rgba(0, 0, 0, 0.5); /* Lighter separator for subtlety */
+  
+  /* Apply the Body Font */
+  font-family: 'BodyFont', sans-serif;
+}
+
+/* Marquee animation keyframes */
+@keyframes marquee {
+  from {
+      transform: translateX(0%);
+  }
+  to {
+      transform: translateX(-50%); /* Shift entire content left */
+  }
+}

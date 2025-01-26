@@ -12,7 +12,13 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      fontFamily: {
+        header: ["'HeaderFont'", "sans-serif"],
+        body: ["'BodyFont'", "sans-serif"],},
     },
   },
-  plugins: [],
+  plugins: [
+    // require("@tailwindcss/forms"),
+    require("@tailwindcss/line-clamp"),
+  ],
 } satisfies Config;
