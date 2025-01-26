@@ -76,75 +76,8 @@ const GET_PRODUCT_BY_HANDLE = `
   }
 `;
 
-// -- Types --
-type VariantNode = {
-  id: string;
-  title: string;
-  priceV2?: {
-    amount?: string;
-    currencyCode?: string;
-  };
-  image?: {
-    url: string;
-    altText?: string;
-  };
-};
-
-type ProductNode = {
-  id: string;
-  title: string;
-  description: string;
-  handle: string;
-  images?: {
-    edges: { node: { url: string; altText?: string } }[];
-  };
-  variants?: {
-    edges: { node: VariantNode }[];
-  };
-  priceRange?: {
-    minVariantPrice?: {
-      amount?: string;
-      currencyCode?: string;
-    };
-  };
-  relatedProducts?: {
-    edges: {
-      node: {
-        products: {
-          edges: {
-            node: {
-              id: string;
-              title: string;
-              handle: string;
-              images: {
-                edges: { node: { url: string; altText?: string } }[];
-              };
-              priceRange: {
-                minVariantPrice: {
-                  amount: string;
-                  currencyCode: string;
-                };
-              };
-            };
-          }[];
-        };
-      };
-    }[];
-  };
-};
-
-// -- Page Props Interface --
-interface ProductPageProps {
-  params: {
-    handle: string;
-  };
-  searchParams?: {
-    [key: string]: string | string[] | undefined;
-  };
-}
-
 // -- Page Component --
-export default async function ProductPage({ params }: ProductPageProps) {
+export default async function ProductPage({ params }: { params: { handle: string } }) {
   const { handle } = params;
 
   // Fetch product data
@@ -153,7 +86,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
     variables: { handle },
   });
 
-  const product: ProductNode = productData?.productByHandle;
+  const product = productData?.productByHandle;
 
   // If product not found, render 404
   if (!product) {
