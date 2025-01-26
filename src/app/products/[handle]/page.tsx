@@ -1,14 +1,8 @@
 // src/app/products/[handle]/page.tsx
 
+import React from 'react';
 import { notFound } from 'next/navigation';
 import { shopifyFetch } from '../../../lib/shopify';
-// import Header from "@/app/components/Header";
-// import Footer from '@/app/components/Footer';
-// import VariantSelector from '@/app/components/VariantSelector';
-// import AddToCartButton from '@/app/components/AddToCartButton';
-// import RelatedProducts from '@/app/components/RelatedProducts'; // Client Component
-// import ImageModal from '@/app/components/ImageModal'; // Client Component
-import React from 'react';
 import ProductPageContent from './ProductPageContent'; // Client Component
 
 // -- GraphQL Query to Fetch a Single Product by Handle --
@@ -139,8 +133,18 @@ type ProductNode = {
   };
 };
 
+// -- Page Props Interface --
+interface ProductPageProps {
+  params: {
+    handle: string;
+  };
+  searchParams?: {
+    [key: string]: string | string[] | undefined;
+  };
+}
+
 // -- Page Component --
-export default async function ProductPage({ params }: { params: { handle: string } }) {
+export default async function ProductPage({ params }: ProductPageProps) {
   const { handle } = params;
 
   // Fetch product data
