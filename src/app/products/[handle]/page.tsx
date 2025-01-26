@@ -141,9 +141,10 @@ interface ProductPageProps {
 
 
 // -- Page Component --
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export default async function ProductPage({ params, searchParams: _searchParams }: ProductPageProps) {
+export default async function ProductPage({ params, searchParams: searchParams }: ProductPageProps) {
   const { handle } = params;
+
+  void searchParams;
 
   // Fetch product data
   const productData = await shopifyFetch({
