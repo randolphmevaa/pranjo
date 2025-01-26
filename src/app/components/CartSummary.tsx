@@ -5,11 +5,11 @@ import { useCart } from '@/context/CartContext';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { HiArrowRight } from 'react-icons/hi';
-import Link from 'next/link';
+// import Link from 'next/link';
 
 export default function CartSummary() {
   const { total, clearCart } = useCart();
-  const router = useRouter();
+  // const router = useRouter();
 
   const handleCheckout = () => {
     // Implement your checkout logic here, e.g., redirect to Shopify's checkout

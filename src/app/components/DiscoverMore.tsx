@@ -148,7 +148,7 @@ const DiscoverCard = React.memo(function DiscoverCard({
 }: {
   product: ProductNode;
 }) {
-  const { id, title, handle, featuredImage, priceRange, variants } = product;
+  const { title, featuredImage, priceRange, variants } = product;
 
   // Choose first variant for accurate pricing/image
   const variantEdges = variants?.edges || [];

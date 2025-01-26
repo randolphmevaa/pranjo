@@ -11,7 +11,7 @@ import Footer from '@/app/components/Footer';
 import { motion } from 'framer-motion';
 
 const CartPage = () => {
-  const { items, total } = useCart();
+  const { items } = useCart();
 
   if (items.length === 0) {
     return (
@@ -46,7 +46,7 @@ const CartPage = () => {
 
         {/* Continue Shopping Button */}
         <div className="mt-8 text-center">
-          <Link href="/">
+          <a href="/">
             <motion.a
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -54,7 +54,7 @@ const CartPage = () => {
             >
               Continue Shopping
             </motion.a>
-          </Link>
+          </a>
         </div>
       </section>
 

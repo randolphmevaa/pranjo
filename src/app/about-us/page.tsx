@@ -4,7 +4,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { FaQuoteLeft, FaQuoteRight } from "react-icons/fa";
+import { FaQuoteLeft } from "react-icons/fa";
 import { motion } from "framer-motion";
 import Header from "../components/Header"; // Import Header component
 import Footer from "../components/Footer"; // Import Footer component

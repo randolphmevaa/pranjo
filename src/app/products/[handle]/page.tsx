@@ -2,12 +2,12 @@
 
 import { notFound } from 'next/navigation';
 import { shopifyFetch } from '../../../lib/shopify';
-import Header from "@/app/components/Header";
-import Footer from '@/app/components/Footer';
-import VariantSelector from '@/app/components/VariantSelector';
-import AddToCartButton from '@/app/components/AddToCartButton';
-import RelatedProducts from '@/app/components/RelatedProducts'; // Client Component
-import ImageModal from '@/app/components/ImageModal'; // Client Component
+// import Header from "@/app/components/Header";
+// import Footer from '@/app/components/Footer';
+// import VariantSelector from '@/app/components/VariantSelector';
+// import AddToCartButton from '@/app/components/AddToCartButton';
+// import RelatedProducts from '@/app/components/RelatedProducts'; // Client Component
+// import ImageModal from '@/app/components/ImageModal'; // Client Component
 import React from 'react';
 import ProductPageContent from './ProductPageContent'; // Client Component
 

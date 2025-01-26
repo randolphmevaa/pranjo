@@ -120,7 +120,7 @@ export default function CollectionsSection({
 
 // -- SINGLE COLLECTION CARD COMPONENT ----------------------------------------------
 function CollectionCard({ collection }: { collection: CollectionNode }) {
-  const { id, title, image, handle } = collection;
+  const { title, image, handle } = collection;
 
   return (
     <a

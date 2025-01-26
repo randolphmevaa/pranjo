@@ -57,22 +57,22 @@ const GET_COLLECTIONS_QUERY = `
 `;
 
 // -- TYPES -----------------------------------------------------
-type ProductNode = {
-  id: string;
-  title: string;
-  handle: string;
-  description: string;
-  featuredImage?: {
-    url: string;
-    altText?: string;
-  };
-  priceRange?: {
-    minVariantPrice?: {
-      amount?: string;
-      currencyCode?: string;
-    };
-  };
-};
+// type ProductNode = {
+//   id: string;
+//   title: string;
+//   handle: string;
+//   description: string;
+//   featuredImage?: {
+//     url: string;
+//     altText?: string;
+//   };
+//   priceRange?: {
+//     minVariantPrice?: {
+//       amount?: string;
+//       currencyCode?: string;
+//     };
+//   };
+// };
 
 type CollectionNode = {
   id: string;

@@ -139,7 +139,6 @@ const CarouselCard = React.memo(function CarouselCard({
   product: ProductNode;
 }) {
   const {
-    id,
     title,
     handle,
     featuredImage,

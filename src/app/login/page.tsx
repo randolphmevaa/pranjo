@@ -27,11 +27,11 @@ export default function Login() {
               “Yoga is the journey of the self, through the self, to the self.”
               Let us help you bring this philosophy to life.
             </p>
-            <img
+            {/* <img
               src="/yoga-illustration.svg"
               alt="Yoga Illustration"
               className="w-64 h-auto relative z-10"
-            />
+            /> */}
           </div>
 
           {/* Right Section: Login Form */}

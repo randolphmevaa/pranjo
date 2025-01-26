@@ -8,19 +8,20 @@ import { HiX, HiMenu, HiChevronDown } from "react-icons/hi";
 import { FiSearch, FiShoppingCart, FiUser } from "react-icons/fi";
 import { motion, AnimatePresence } from "framer-motion";
 import FocusTrap from "focus-trap-react";
+import Link from 'next/link';
 
-type VariantNode = {
-  id: string;
-  title: string;
-  image?: {
-    url: string;
-    altText?: string;
-  };
-  priceV2?: {
-    amount?: string;
-    currencyCode?: string;
-  };
-};
+// type VariantNode = {
+//   id: string;
+//   title: string;
+//   image?: {
+//     url: string;
+//     altText?: string;
+//   };
+//   priceV2?: {
+//     amount?: string;
+//     currencyCode?: string;
+//   };
+// };
 
 type ProductNode = {
   id: string;
@@ -174,7 +175,7 @@ export default function Header({
 
         {/* Center Section: Logo */}
         <div className="flex-1 flex justify-center md:hidden">
-          <a href="/" className="flex-shrink-0">
+          <Link href="/" className="flex-shrink-0">
             <Image
               src="https://cdn.prod.website-files.com/65666b7d3e4d8058ee4c34d2/6790b7e16a4d77727353361c_Pranjo..svg"
               alt="Pranjo Logo"
@@ -182,21 +183,21 @@ export default function Header({
               height={40}
               className="h-8 w-auto"
             />
-          </a>
+          </ Link>
         </div>
 
         {/* Right Section: Login and Cart Icons (Mobile) */}
         <div className="flex items-center md:hidden">
           {/* Login Icon */}
-          <a
+          <Link
             href="/login"
             className="text-gray-700 hover:text-black mr-4"
             aria-label="Login"
           >
             <FiUser className="w-6 h-6" />
-          </a>
+          </ Link>
           {/* Cart Icon */}
-          <a
+          <Link
             href="/cart"
             className="text-gray-700 hover:text-black relative"
             aria-label="Shopping Cart"
@@ -205,40 +206,40 @@ export default function Header({
             <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold rounded-full px-1">
               3
             </span>
-          </a>
+          </ Link>
         </div>
 
         {/* Desktop Navigation Links */}
         <div className="hidden md:flex items-center gap-6">
-          <a
+          <Link
             href="#shop"
             className="font-body text-gray-700 hover:text-black transition-colors duration-200"
           >
             Shop
-          </a>
-          <a
+          </ Link>
+          <Link
             href="#leggings"
             className="font-body text-gray-700 hover:text-black transition-colors duration-200"
           >
             Leggings
-          </a>
-          <a
+          </Link>
+          <Link
             href="#discover"
             className="font-body text-gray-700 hover:text-black transition-colors duration-200"
           >
             Discover
-          </a>
-          <a
+          </ Link>
+          <Link
             href="#sale"
             className="font-body text-red-600 hover:text-red-700 transition-colors duration-200"
           >
             SALE
-          </a>
+          </ Link>
         </div>
 
         {/* Center Section: Logo */}
         <div className="hidden md:flex-1 md:flex md:justify-center">
-          <a href="/" className="flex-shrink-0">
+          <Link href="/" className="flex-shrink-0">
             <Image
               src="https://cdn.prod.website-files.com/65666b7d3e4d8058ee4c34d2/6790b7e16a4d77727353361c_Pranjo..svg"
               alt="Pranjo Logo"
@@ -246,7 +247,7 @@ export default function Header({
               height={40}
               className="h-8 w-auto"
             />
-          </a>
+          </ Link>
         </div>
 
         {/* Desktop Right Icons */}
@@ -309,16 +310,16 @@ export default function Header({
           </div>
 
           {/* Login Icon */}
-          <a
+          <Link
             href="/login"
             className="text-gray-700 hover:text-black"
             aria-label="Login"
           >
             <FiUser className="w-6 h-6" />
-          </a>
+          </ Link>
 
           {/* Cart Icon */}
-          <a
+          <Link
             href="/cart"
             className="text-gray-700 hover:text-black relative"
             aria-label="Shopping Cart"
@@ -327,7 +328,7 @@ export default function Header({
             <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold rounded-full px-1">
               3
             </span>
-          </a>
+          </ Link>
         </div>
       </nav>
 
@@ -464,22 +465,22 @@ export default function Header({
                           transition={{ duration: 0.3 }}
                         >
                           <li>
-                            <a
+                            <Link
                               href="#holiday-deals"
                               className="block font-body text-gray-600 hover:text-black transition-colors duration-200"
                               onClick={() => setIsMobileMenuOpen(false)}
                             >
                               Holiday Deals
-                            </a>
+                            </ Link>
                           </li>
                           <li>
-                            <a
+                            <Link
                               href="#winter-collection"
                               className="block font-body text-gray-600 hover:text-black transition-colors duration-200"
                               onClick={() => setIsMobileMenuOpen(false)}
                             >
                               Winter Collection
-                            </a>
+                            </ Link>
                           </li>
                         </motion.ul>
                       )}
@@ -488,35 +489,35 @@ export default function Header({
 
                   {/* Shop All */}
                   <li>
-                    <a
+                    <Link
                       href="#shop-all"
                       className="block font-body text-gray-700 hover:text-black transition-colors duration-200"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
                       Shop All
-                    </a>
+                    </ Link>
                   </li>
 
                   {/* Shop Leggings */}
                   <li>
-                    <a
+                    <Link
                       href="#shop-leggings"
                       className="block font-body text-gray-700 hover:text-black transition-colors duration-200"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
                       Shop Leggings
-                    </a>
+                    </ Link>
                   </li>
 
                   {/* Discover */}
                   <li>
-                    <a
+                    <Link
                       href="#discover"
                       className="block font-body text-gray-700 hover:text-black transition-colors duration-200"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
                       Discover
-                    </a>
+                    </ Link>
                   </li>
 
                   {/* More */}
@@ -546,31 +547,31 @@ export default function Header({
                           transition={{ duration: 0.3 }}
                         >
                           <li>
-                            <a
+                            <Link
                               href="/about-us"
                               className="block font-body text-gray-600 hover:text-black transition-colors duration-200"
                               onClick={() => setIsMobileMenuOpen(false)}
                             >
                               About Us
-                            </a>
+                            </ Link>
                           </li>
                           <li>
-                            <a
+                            <Link
                               href="/contact"
                               className="block font-body text-gray-600 hover:text-black transition-colors duration-200"
                               onClick={() => setIsMobileMenuOpen(false)}
                             >
                               Contact
-                            </a>
+                            </ Link>
                           </li>
                           <li>
-                            <a
+                            <Link
                               href="#careers"
                               className="block font-body text-gray-600 hover:text-black transition-colors duration-200"
                               onClick={() => setIsMobileMenuOpen(false)}
                             >
                               Careers
-                            </a>
+                            </ Link>
                           </li>
                         </motion.ul>
                       )}

@@ -2,6 +2,7 @@
 
 "use client";
 
+import Link from 'next/link';
 import React from "react";
 import Image from "next/image"; // If using Next.js. Otherwise, use a regular <img> tag.
 import {
@@ -21,7 +22,7 @@ function Footer() {
       <div className="max-w-6xl mx-auto">
         {/* Logo Section */}
         <div className="flex justify-center mb-8">
-          <a href="/" aria-label="Pranjo Home">
+          <Link href="/" aria-label="Pranjo Home">
             <Image
               src="https://cdn.prod.website-files.com/65666b7d3e4d8058ee4c34d2/6790b7e16a4d77727353361c_Pranjo..svg"
               alt="Pranjo Logo"
@@ -29,7 +30,7 @@ function Footer() {
               height={50}
               className="object-contain"
             />
-          </a>
+          </ Link>
         </div>
 
         {/* Information Grid */}
@@ -49,29 +50,29 @@ function Footer() {
             <ul className="text-sm text-gray-700 space-y-1 font-body">
               <li>
                 Email:{" "}
-                <a
+                <Link
                   href="mailto:support@yogastore.com"
                   className="hover:underline"
                 >
                   support@yogastore.com
-                </a>
+                </ Link>
               </li>
               <li>
                 Phone:{" "}
-                <a href="tel:+1234567890" className="hover:underline">
+                <Link href="tel:+1234567890" className="hover:underline">
                   +1 234 567 890
-                </a>
+                </ Link>
               </li>
               <li>
                 Address:{" "}
-                <a
+                <Link
                   href="https://goo.gl/maps/your-location"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:underline"
                 >
                   123 Yoga Street, London, UK
-                </a>
+                </ Link>
               </li>
             </ul>
           </div>
@@ -101,7 +102,7 @@ function Footer() {
             <h4 className="text-lg font-header mb-4">Follow Us</h4>
             <ul className="flex gap-4">
               <li>
-                <a
+                <Link
                   href="https://instagram.com/yourprofile"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -109,10 +110,10 @@ function Footer() {
                   aria-label="Instagram"
                 >
                   <FaInstagram className="w-5 h-5" />
-                </a>
+                </ Link>
               </li>
               <li>
-                <a
+                <Link
                   href="https://facebook.com/yourprofile"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -120,10 +121,10 @@ function Footer() {
                   aria-label="Facebook"
                 >
                   <FaFacebookF className="w-5 h-5" />
-                </a>
+                </ Link>
               </li>
               <li>
-                <a
+                <Link
                   href="https://twitter.com/yourprofile"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -131,10 +132,10 @@ function Footer() {
                   aria-label="Twitter"
                 >
                   <FaTwitter className="w-5 h-5" />
-                </a>
+                </ Link>
               </li>
               <li>
-                <a
+                <Link
                   href="https://linkedin.com/in/yourprofile"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -142,7 +143,7 @@ function Footer() {
                   aria-label="LinkedIn"
                 >
                   <FaLinkedinIn className="w-5 h-5" />
-                </a>
+                </ Link>
               </li>
             </ul>
           </div>
@@ -152,19 +153,19 @@ function Footer() {
         <div className="mt-8 flex flex-col sm:flex-row justify-between items-center">
           <ul className="flex gap-4 text-sm text-gray-700 font-body">
             <li>
-              <a href="/privacy-policy" className="hover:underline">
+              <Link href="/privacy-policy" className="hover:underline">
                 Privacy Policy
-              </a>
+              </ Link>
             </li>
             <li>
-              <a href="/terms-of-service" className="hover:underline">
+              <Link href="/terms-of-service" className="hover:underline">
                 Terms of Service
-              </a>
+              </ Link>
             </li>
             <li>
-              <a href="/shipping-policy" className="hover:underline">
+              <Link href="/shipping-policy" className="hover:underline">
                 Shipping Policy
-              </a>
+              </ Link>
             </li>
           </ul>
           <p className="text-xs text-gray-500 mt-4 sm:mt-0 font-body">

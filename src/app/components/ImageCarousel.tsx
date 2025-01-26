@@ -12,9 +12,6 @@ import 'swiper/css/zoom';
 
 import SwiperCore from 'swiper';
 
-// Initialize Swiper modules
-SwiperCore.use([Navigation, Thumbs, Zoom, A11y]);
-
 type ImageNode = {
   url: string;
   altText?: string;
@@ -25,8 +22,11 @@ type ImageCarouselProps = {
 };
 
 export default function ImageCarousel({ images }: ImageCarouselProps) {
-  const [thumbsSwiper, setThumbsSwiper] = useState<SwiperCore | null>(null);
+  // Initialize Swiper modules
+  SwiperCore.use([Navigation, Thumbs, Zoom, A11y]);
 
+  const [thumbsSwiper, setThumbsSwiper] = useState<SwiperCore | null>(null);
+  
   return (
     <div className="w-full">
       {/* Main Swiper */}
