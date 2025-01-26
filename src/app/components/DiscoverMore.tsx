@@ -51,18 +51,9 @@ export default function DiscoverMore({
 }: {
   products: { node: ProductNode }[];
 }) {
-  // If no products, bail out
-  if (!products || products.length === 0) return null;
-
-  // Slice only 8 items, starting at index 8
-  const discoverItems = products.slice(8, 16);
-
-  // If after slicing we have none, bail
-  if (!discoverItems || discoverItems.length === 0) return null;
-
-  // Embla carousel setup
+  // **Unconditionally call Hooks before any conditional logic**
   const [emblaRef, emblaApi] = useEmblaCarousel({
-    align: "start",
+    align: 'start',
     loop: true,
     skipSnaps: false,
     slidesToScroll: 1,
@@ -82,23 +73,35 @@ export default function DiscoverMore({
     if (emblaApi) {
       emblaApi.reInit();
     }
-  }, [emblaApi, discoverItems]);
+  }, [emblaApi, products]);
 
   // Keyboard navigation for accessibility
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "ArrowLeft") {
+      if (e.key === 'ArrowLeft') {
         emblaApi?.scrollPrev();
-      } else if (e.key === "ArrowRight") {
+      } else if (e.key === 'ArrowRight') {
         emblaApi?.scrollNext();
       }
     };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
   }, [emblaApi]);
 
+  // **Move conditional returns after Hooks**
+  if (!products || products.length === 0) return null;
+
+  // Slice only 8 items, starting at index 8
+  const discoverItems = products.slice(8, 16);
+
+  // If after slicing we have none, bail
+  if (!discoverItems || discoverItems.length === 0) return null;
+
   return (
-    <section className="py-16 px-4 sm:px-8 bg-gray-50 border-t border-b border-black" id="discover-more">
+    <section
+      className="py-16 px-4 sm:px-8 bg-gray-50 border-t border-b border-black"
+      id="discover-more"
+    >
       <div className="relative group max-w-[1440px] mx-auto">
         {/* Header */}
         <div className="flex items-center mb-8">

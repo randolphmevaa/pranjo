@@ -24,21 +24,16 @@ export default function CollectionsSection({
 }: {
   collections: { node: CollectionNode }[];
 }) {
-  if (!collections || collections.length === 0) return null;
-
-  // Only display the top 3 collections
-  const topCollections = collections.slice(0, 3);
-
-  // Embla carousel setup for mobile responsiveness
+  // **Unconditionally call Hooks before any conditional logic**
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
     speed: 8, // Adjusted speed for smoother transition
     draggable: true,
-    axis: "x",
-    align: "start",
+    axis: 'x',
+    align: 'start',
     skipSnaps: false,
     breakpoints: {
-      "(min-width: 768px)": {
+      '(min-width: 768px)': {
         slidesToScroll: 1,
         dragFree: false,
       },
@@ -58,20 +53,26 @@ export default function CollectionsSection({
     if (emblaApi) {
       emblaApi.reInit();
     }
-  }, [emblaApi, topCollections]);
+  }, [emblaApi, collections]);
 
   // Keyboard navigation for accessibility
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "ArrowLeft") {
+      if (e.key === 'ArrowLeft') {
         emblaApi?.scrollPrev();
-      } else if (e.key === "ArrowRight") {
+      } else if (e.key === 'ArrowRight') {
         emblaApi?.scrollNext();
       }
     };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
   }, [emblaApi]);
+
+  // **Move conditional returns after Hooks**
+  if (!collections || collections.length === 0) return null;
+
+  // Only display the top 3 collections
+  const topCollections = collections.slice(0, 3);
 
   return (
     <section className="py-16 px-4 sm:px-8 bg-gray-50" id="collections">
