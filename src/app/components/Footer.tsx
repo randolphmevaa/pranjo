@@ -15,7 +15,7 @@ import {
 function Footer() {
   return (
     <footer
-      className="bg-gray-100 py-16 px-6 sm:px-8 mt-16"
+      className="bg-gray-100 py-16 px-6 sm:px-8 "
       id="footer"
       aria-labelledby="footer-heading"
     >

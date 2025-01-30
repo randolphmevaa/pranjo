@@ -20,18 +20,22 @@ type CartItem = {
 
 type CartItemCardProps = {
   item: CartItem;
+  onRemove: () => void; // <-- ADDED
 };
 
-export default function CartItemCard({ item }: CartItemCardProps) {
-  const { updateItemQuantity, removeItem } = useCart();
+export default function CartItemCard({ item, onRemove }: CartItemCardProps) {
+  // We still use the cart context for quantity updates only
+  const { updateItemQuantity } = useCart();
 
+  // Update quantity in context
   const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const quantity = Math.max(1, parseInt(e.target.value) || 1);
     updateItemQuantity(item.id, quantity);
   };
 
+  // Call the parent's remove callback
   const handleRemove = () => {
-    removeItem(item.id);
+    onRemove();
   };
 
   return (
@@ -56,7 +60,9 @@ export default function CartItemCard({ item }: CartItemCardProps) {
       {/* Product Details */}
       <div className="flex-1 ml-4">
         <h3 className="text-lg font-semibold">{item.title}</h3>
-        <p className="text-sm text-gray-600">Price: {item.currency} {item.price}</p>
+        <p className="text-sm text-gray-600">
+          Price: {item.currency} {item.price}
+        </p>
       </div>
 
       {/* Quantity Selector */}

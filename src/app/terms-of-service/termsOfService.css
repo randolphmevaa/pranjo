@@ -1,0 +1,33 @@
+/* termsOfService.css */
+
+/* Fade-in-up animation */
+.animate-fadeInUp {
+    animation: fadeInUp 1.2s ease forwards;
+  }
+  
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(25px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Delay class if needed */
+  .delay-150 {
+    animation-delay: 0.15s;
+  }
+  
+  /* Card hover: tilt & scale */
+  .card-hover {
+    transform: translateY(0);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
+  .card-hover:hover {
+    transform: rotate(-1deg) scale(1.02);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  }
+  

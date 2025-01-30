@@ -18,13 +18,14 @@ type VariantNode = {
 
 type VariantSelectorProps = {
   variants: { node: VariantNode }[];
+  compact?: boolean;
 };
 
-export default function VariantSelector({ variants }: VariantSelectorProps) {
+export default function VariantSelector({ variants, compact }: VariantSelectorProps) {
   const [selectedVariant, setSelectedVariant] = useState<VariantNode>(variants[0].node);
 
   return (
-    <div className="mt-6">
+    <div className={compact ? 'variant-selector-compact' : 'variant-selector'}>
       <label htmlFor="variant" className="block text-sm font-medium text-gray-700">
         Variant
       </label>

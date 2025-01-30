@@ -1,0 +1,54 @@
+/* shippingPolicy.css */
+
+/* Fade-in-up keyframes and class */
+.animate-fadeInUp {
+    animation: fadeInUp 1.2s ease forwards;
+  }
+  
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(25px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Floating leaves */
+  .leaf-animation {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background-image: url("/images/leaf-icon.png"); /* Make sure this path is correct */
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0.2;
+    animation: floatLeaf 8s ease-in-out infinite;
+  }
+  
+  .leaf-left {
+    top: 20%;
+    left: 10%;
+    animation-delay: 0.5s;
+  }
+  
+  .leaf-right {
+    bottom: 10%;
+    right: 15%;
+    animation-delay: 2s;
+  }
+  
+  @keyframes floatLeaf {
+    0% {
+      transform: translateY(0) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-20px) rotate(10deg);
+    }
+    100% {
+      transform: translateY(0) rotate(0deg);
+    }
+  }
+  

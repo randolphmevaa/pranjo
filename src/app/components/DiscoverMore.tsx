@@ -11,6 +11,7 @@ import {
   HiShoppingBag,
 } from "react-icons/hi";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 
 // -- TYPES (adjust as needed) --
 type VariantNode = {
@@ -114,7 +115,7 @@ export default function DiscoverMore({
         <div className="overflow-hidden" ref={emblaRef}>
           <div className="flex gap-6">
             {discoverItems.map(({ node }) => (
-              <DiscoverCard key={node.id} product={node} />
+              <CarouselCard key={node.id} product={node} />
             ))}
           </div>
         </div>
@@ -146,12 +147,18 @@ export default function DiscoverMore({
 }
 
 // -- SINGLE CARD COMPONENT ----------------------------------------------
-const DiscoverCard = React.memo(function DiscoverCard({
+const CarouselCard = React.memo(function CarouselCard({
   product,
 }: {
   product: ProductNode;
 }) {
-  const { title, featuredImage, priceRange, variants } = product;
+  const {
+    title,
+    handle,
+    featuredImage,
+    priceRange,
+    variants,
+  } = product;
 
   // Choose first variant for accurate pricing/image
   const variantEdges = variants?.edges || [];
@@ -191,85 +198,91 @@ const DiscoverCard = React.memo(function DiscoverCard({
     setImageKey((prev) => prev + 1);
   }, [activeImageUrl]);
 
+  // Render
   return (
-    <div
-      className={`flex-[0_0_80%] sm:flex-[0_0_40%] md:flex-[0_0_30%] 
-                  lg:flex-[0_0_22%] xl:flex-[0_0_18%] 2xl:flex-[0_0_15%]
-                  min-w-[220px] max-w-[300px]
-                  h-[400px] relative 
-                  rounded-lg overflow-hidden bg-white
-                  transition-transform duration-300 
-                  hover:scale-[1.02]`}
-    >
-      {/* Image Area */}
-      <div className="w-full h-[80%] bg-gray-100 overflow-hidden relative group">
-        {/* Primary Image */}
-        <FadeImage key={imageKey} src={activeImageUrl} alt={activeImageAlt} />
+    <Link href={`/products/${handle}`}>
+      <div
+        className={`flex-[0_0_80%] sm:flex-[0_0_40%] md:flex-[0_0_30%] 
+                    lg:flex-[0_0_22%] xl:flex-[0_0_18%] 2xl:flex-[0_0_15%]
+                    min-w-[220px] max-w-[300px]
+                    h-[400px] relative 
+                    rounded-lg overflow-hidden bg-white
+                    transition-transform duration-300 
+                    hover:scale-[1.02] cursor-pointer`}
+      >
+        {/* Image Area */}
+        <div className="w-full h-[80%] bg-gray-100 overflow-hidden relative group">
+          {/* Primary Image */}
+          <FadeImage key={imageKey} src={activeImageUrl} alt={activeImageAlt} />
 
-        {/* Secondary Image (shown on hover) */}
-        {secondImageUrl && (
-          <FadeImage
-            key={`second-${imageKey}`}
-            src={secondImageUrl}
-            alt={secondImageAlt || activeImageAlt}
-            className="opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-          />
-        )}
+          {/* Secondary Image (shown on hover) */}
+          {secondImageUrl && (
+            <FadeImage
+              key={`second-${imageKey}`}
+              src={secondImageUrl}
+              alt={secondImageAlt || activeImageAlt}
+              className="opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            />
+          )}
 
-        {/* Shopping Bag Icon on Hover */}
-        <AnimatePresence>
-          <motion.button
-            className="absolute bottom-4 right-4 bg-white bg-opacity-70 p-2 rounded-md 
-                       shadow-md hover:bg-opacity-100 transition-opacity duration-300 opacity-0 group-hover:opacity-100"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
-            transition={{ duration: 0.3 }}
-            whileHover={{ scale: 1.1 }}
-            onClick={() => handleAddToCart(product)}
-            aria-label={`Add ${title} to cart`}
-          >
-            <HiShoppingBag className="w-6 h-6 text-gray-700" />
-          </motion.button>
-        </AnimatePresence>
+          {/* Shopping Bag Icon on Hover */}
+          <AnimatePresence>
+            <motion.button
+              className="absolute bottom-4 right-4 bg-white bg-opacity-70 p-2 rounded-md 
+                         shadow-md hover:bg-opacity-100 transition-opacity duration-300 opacity-0 group-hover:opacity-100"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              transition={{ duration: 0.3 }}
+              whileHover={{ scale: 1.1 }}
+              onClick={(e) => {
+                e.preventDefault(); // Prevent navigating when clicking add to cart
+                handleAddToCart(product);
+              }}
+              aria-label={`Add ${title} to cart`}
+            >
+              <HiShoppingBag className="w-6 h-6 text-gray-700" />
+            </motion.button>
+          </AnimatePresence>
+        </div>
+
+        {/* Details Area */}
+        <div className="h-[20%] flex flex-col p-2">
+          {/* Product Name */}
+          <h3 className="text-lg font-header text-gray-900 truncate">
+            {title}
+          </h3>
+
+          {/* Price */}
+          {displayPrice && displayCurrency && (
+            <p className="text-md font-body font-semibold text-gray-700">
+              {displayPrice} {displayCurrency}
+            </p>
+          )}
+
+          {/* Variant Selection (Optional) */}
+          {variantEdges.length > 1 && (
+            <select
+              value={selectedVariant?.id}
+              onChange={(e) => {
+                const variant = variantEdges.find(
+                  (v) => v.node.id === e.target.value
+                )?.node;
+                setSelectedVariant(variant || null);
+              }}
+              className="mt-auto p-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-300"
+              aria-label={`Select variant for ${title}`}
+            >
+              {variantEdges.map(({ node }) => (
+                <option key={node.id} value={node.id}>
+                  {node.title}
+                </option>
+              ))}
+            </select>
+          )}
+        </div>
       </div>
-
-      {/* Details Area */}
-      <div className="h-[20%] flex flex-col p-2">
-        {/* Product Name */}
-        <h3 className="text-lg font-header text-gray-900 truncate">
-          {title}
-        </h3>
-
-        {/* Price */}
-        {displayPrice && displayCurrency && (
-          <p className="text-md font-body font-semibold text-gray-700">
-            {displayPrice} {displayCurrency}
-          </p>
-        )}
-
-        {/* Variant Selection (Optional) */}
-        {variantEdges.length > 1 && (
-          <select
-            value={selectedVariant?.id}
-            onChange={(e) => {
-              const variant = variantEdges.find(
-                (v) => v.node.id === e.target.value
-              )?.node;
-              setSelectedVariant(variant || null);
-            }}
-            className="mt-auto p-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-300"
-            aria-label={`Select variant for ${title}`}
-          >
-            {variantEdges.map(({ node }) => (
-              <option key={node.id} value={node.id}>
-                {node.title}
-              </option>
-            ))}
-          </select>
-        )}
-      </div>
-    </div>
+    </Link>
   );
 });
 

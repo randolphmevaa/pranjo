@@ -9,6 +9,7 @@ import { FiSearch, FiShoppingCart, FiUser } from "react-icons/fi";
 import { motion, AnimatePresence } from "framer-motion";
 import FocusTrap from "focus-trap-react";
 import Link from 'next/link';
+import { useCart } from '@/context/CartContext';
 
 // type VariantNode = {
 //   id: string;
@@ -51,11 +52,15 @@ const countries = [
   { name: "United Arab Emirates (AED د.إ)", display: "AED د.إ" }, // Corrected currency code and symbol
 ];
 
+interface HeaderProps {
+  featuredProducts: { node: ProductNode }[];
+  scrolled?: boolean; // <-- Added this prop
+}
+
 export default function Header({
   featuredProducts = [],
-}: {
-  featuredProducts: { node: ProductNode }[];
-}) {
+  scrolled = false,
+}: HeaderProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -146,11 +151,16 @@ export default function Header({
     return () => window.removeEventListener("keydown", handleEsc);
   }, []);
 
+  const { items } = useCart();
+
+  // Calculate the total quantity of items in the cart
+  const totalQuantity = items.reduce((total, item) => total + item.quantity, 0);
+
   return (
     <header
-      className={`sticky top-0 z-50 bg-white shadow-md transition-transform duration-300 ${
-        isNavbarVisible ? "translate-y-0" : "-translate-y-full"
-      }`}
+      className={`sticky top-0 z-50 transition-all duration-300 ${
+        scrolled ? "bg-white shadow-md" : "bg-transparent"
+      } ${isNavbarVisible ? "translate-y-0" : "-translate-y-full"}`}
     >
       <nav className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
         {/* Left Section: Hamburger Menu and Search Icon (Mobile) */}
@@ -203,10 +213,12 @@ export default function Header({
             aria-label="Shopping Cart"
           >
             <FiShoppingCart className="w-6 h-6" />
-            <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold rounded-full px-1">
-              3
-            </span>
-          </ Link>
+            {totalQuantity > 0 && (
+              <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold rounded-full px-1">
+                {totalQuantity}
+              </span>
+            )}
+          </Link>
         </div>
 
         {/* Desktop Navigation Links */}
@@ -325,10 +337,13 @@ export default function Header({
             aria-label="Shopping Cart"
           >
             <FiShoppingCart className="w-6 h-6" />
-            <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold rounded-full px-1">
-              3
-            </span>
-          </ Link>
+            {totalQuantity > 0 && (
+              <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold rounded-full px-1">
+                {totalQuantity}
+              </span>
+            )}
+          </Link>
+
         </div>
       </nav>
 
